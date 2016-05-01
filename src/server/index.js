@@ -7,6 +7,7 @@ const staticAssets = require('koa-static')
 //const bodyParser = require('koa-body')
 
 const config = require('../config')
+const db = require('../db')
 const homeRouter = require('../app/home/routes')
 
 const app = new Koa()
@@ -15,6 +16,12 @@ const app = new Koa()
 if (config.NODE_ENV !== 'test') {
   app.use(logger());
 }
+
+// Database
+app.use((ctx, next) => {
+  ctx.db = db
+  return next()
+})
 
 // Assets
 app.use(compress())
