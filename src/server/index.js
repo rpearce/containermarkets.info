@@ -9,6 +9,7 @@ const staticAssets = require('koa-static')
 const config = require('../config')
 const db = require('../db')
 const homeRouter = require('../app/home/routes')
+const placesRouter = require('../app/places/routes')
 
 const app = new Koa()
 
@@ -31,12 +32,17 @@ app.use(staticAssets('src/public'))
 //app.use(bodyParser())
 
 // Protect routes behind auth rules
-// and give 404 if not auth'd
+// and give 404 if not auth'd.
+// Should have this somewhere else.
 // app.use()
 
-// Routes
+// Home Routes
 app.use(homeRouter.routes())
 app.use(homeRouter.allowedMethods())
+
+// Places Routes
+app.use(placesRouter.routes())
+app.use(placesRouter.allowedMethods())
 
 if (require.main === module) {
   module.exports = app;

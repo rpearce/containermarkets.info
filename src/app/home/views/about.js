@@ -1,6 +1,6 @@
 'use strict'
 
-const layout = require('../../layouts')
+const layout = require('../../../layouts')
 
 module.exports = () => {
   const title = 'About'
