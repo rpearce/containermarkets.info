@@ -4,7 +4,7 @@ const Koa = require('koa')
 const logger = require('koa-logger')
 const compress = require('koa-compress')
 const staticAssets = require('koa-static')
-//const bodyParser = require('koa-body')
+const bodyParser = require('koa-body')
 
 const config = require('../config')
 const db = require('../db')
@@ -28,8 +28,8 @@ app.use((ctx, next) => {
 app.use(compress())
 app.use(staticAssets('src/public'))
 
-// Parsing Request Bodies
-//app.use(bodyParser())
+// Parse Requests
+app.use(bodyParser())
 
 // Protect routes behind auth rules
 // and give 404 if not auth'd.

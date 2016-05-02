@@ -4,7 +4,9 @@
   "description": "Aggregator for shipping container markets",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-css": "./bin/build-css",
+    "watch-css": "./bin/watch-css",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   "dependencies": {
     "co-views": "^2.1.0",
     "koa": "^2.0.0",
+    "koa-body": "^1.4.0",
     "koa-compress": "^2.0.0",
     "koa-csrf": "^2.4.0",
     "koa-logger": "^2.0.0",
@@ -27,5 +30,9 @@
     "koa-static": "^2.0.0",
     "massive": "^2.2.0",
     "pg": "^4.5.5"
+  },
+  "devDependencies": {
+    "node-sass": "^3.6.0",
+    "nodemon": "^1.9.2"
   }
 }
