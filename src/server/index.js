@@ -5,6 +5,9 @@ const logger = require('koa-logger')
 const compress = require('koa-compress')
 const staticAssets = require('koa-static')
 const bodyParser = require('koa-body')
+const convert = require('koa-convert')
+const session = require('koa-session')
+const csrf = require('koa-csrf')
 
 const config = require('../config')
 const db = require('../db')
@@ -13,9 +16,13 @@ const placesRouter = require('../app/places/routes')
 
 const app = new Koa()
 
+// Session MGMT.
+// (use convert until it comes with promises)
+app.use(convert(session(app)))
+
 // Logger
 if (config.NODE_ENV !== 'test') {
-  app.use(logger());
+  app.use(logger())
 }
 
 // Database
@@ -25,11 +32,24 @@ app.use((ctx, next) => {
 })
 
 // Assets
-app.use(compress())
 app.use(staticAssets('src/public'))
 
 // Parse Requests
 app.use(bodyParser())
+
+// CSRF
+app.keys = [config.sessionKey]
+csrf(app)
+app.use((ctx, next) => {
+  if (ctx.method === 'GET' ||
+     ctx.method === 'HEAD' ||
+     ctx.method === 'OPTIONS') {
+    return next()
+  }
+
+  ctx.assertCsrf()
+  return next()
+})
 
 // Protect routes behind auth rules
 // and give 404 if not auth'd.
@@ -43,6 +63,9 @@ app.use(homeRouter.allowedMethods())
 // Places Routes
 app.use(placesRouter.routes())
 app.use(placesRouter.allowedMethods())
+
+// Compress content delivery (gzip)
+app.use(compress())
 
 if (require.main === module) {
   module.exports = app;

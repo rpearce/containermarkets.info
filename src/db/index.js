@@ -1,3 +1,5 @@
+'use strict'
+
 const massive = require('massive')
 const connectionString = require('../config').db.connectionString
 
