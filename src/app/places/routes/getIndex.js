@@ -1,12 +1,11 @@
 'use strict'
 
-const places = [
-  { name: 'DeKalb Market', slug: 'dekalb-market' },
-  { name: 'BoxPark', slug: 'boxpark' },
-  { name: 'ReStart Container Mall', slug: 'restart-container-mall' }
-]
+const db = require('../../../db')()
 
-module.exports = (ctx, next) => {
-  ctx.body = places
-  return next()
-}
+module.exports = (ctx, next) => new Promise((resolve, reject) => {
+  db.places.find(null, (err, places) => {
+    if (err) return reject(err)
+    ctx.body = places
+    resolve()
+  })
+})

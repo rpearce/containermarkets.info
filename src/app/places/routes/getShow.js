@@ -1,15 +1,16 @@
 'use strict'
 
+const db = require('../../../db')()
 const template = require('../views/show')
 
-const places = [
-  { name: 'DeKalb Market', slug: 'dekalb-market' },
-  { name: 'BoxPark', slug: 'boxpark' },
-  { name: 'ReStart Container Mall', slug: 'restart-container-mall' }
-]
-
-module.exports = (ctx, next) => {
-  const place = places.find(p => p.slug === ctx.params.slug)
-  ctx.body = template(place)
-  return next()
-}
+module.exports = (ctx, next) => new Promise((resolve, reject) => {
+  db.places.findOne({ slug: ctx.params.slug }, (err, place) => {
+    if (err) return reject(err)
+    if (!place) {
+      ctx.status = 404;
+      return resolve()
+    }
+    ctx.body = template(place)
+    resolve()
+  })
+})
