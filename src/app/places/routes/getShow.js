@@ -2,6 +2,7 @@
 
 const db = require('../../../db')()
 const template = require('../views/show')
+const isJSONRequest = require('../../../server/utils').isJSONRequest
 
 module.exports = (ctx, next) => new Promise((resolve, reject) => {
   db.places.findOne({ slug: ctx.params.slug }, (err, place) => {
@@ -10,7 +11,7 @@ module.exports = (ctx, next) => new Promise((resolve, reject) => {
       ctx.status = 404;
       return resolve()
     }
-    ctx.body = template(place)
+    ctx.body = isJSONRequest(ctx) ? place : template(place)
     resolve()
   })
 })

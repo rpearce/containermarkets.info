@@ -4,9 +4,7 @@ const Router = require('koa-router')
 const getIndex = require('./getIndex')
 const getShow = require('./getShow')
 
-const router = new Router({
-  prefix: '/places'
-})
+const router = new Router()
 
 router
   .get('/', getIndex)
