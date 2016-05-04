@@ -3,17 +3,17 @@
 const db = require('./index')()
 
 const loadSchema = () => new Promise((resolve, reject) => {
-  return db.schema((err, _) => {
-    if (err) reject(err);
+  db.schema((err, _) => {
+    if (err) return reject(err);
     resolve();
   })
 })
 
 const loadSeeds = () => new Promise((resolve, reject) => {
-  return db.seeds((err, _) => {
-    if (err) reject(err);
+  db.seeds((err, _) => {
+    if (err) return reject(err);
     resolve();
   })
 })
 
-loadSchema().then(loadSeeds)
+loadSchema().then(loadSeeds).then(process.exit)
