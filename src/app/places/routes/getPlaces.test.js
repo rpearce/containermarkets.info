@@ -11,6 +11,7 @@ describe('Places', () => {
         .end(done)
     })
   })
+
   describe('GET / JSON', () => {
     it('is successful', (done) => {
       request
