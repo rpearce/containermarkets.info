@@ -2,7 +2,7 @@ const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
 const db = require('../../../db')()
 
-describe('Places', () => {
+describe('Place', () => {
   beforeEach((done) => destroyPlaces().then(done))
 
   describe('When Found', () => {
