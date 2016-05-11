@@ -3,7 +3,7 @@ const request = require('supertest').agent(app.listen())
 const db = require('../../../db')()
 
 describe('Places', () => {
-  afterEach((done) => destroyPlaces().then(done))
+  beforeEach((done) => destroyPlaces().then(done))
 
   describe('When Found', () => {
     describe('GET /:slug', () => {
@@ -17,6 +17,7 @@ describe('Places', () => {
         })
       })
     })
+
     describe('GET /:slug JSON', () => {
       it('returns 200', (done) => {
         createPlace().then((place) => {
@@ -38,6 +39,7 @@ describe('Places', () => {
       })
     })
   })
+
   describe('When not found', () => {
     describe('GET /:slug', () => {
       it('returns 404', (done) => {
@@ -48,6 +50,7 @@ describe('Places', () => {
           .end(done)
       })
     })
+
     describe('GET /:slug JSON', () => {
       it('returns 404 and error JSON', (done) => {
         request

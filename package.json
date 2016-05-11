@@ -7,6 +7,8 @@
     "build-css": "./bin/build-css",
     "watch-css": "./bin/watch-css",
     "db:setup": "./bin/reset-db && node src/db/setup.js",
+    "db:test:setup": "./bin/reset-test-db && NODE_ENV=test node src/db/setup.js",
+    "db:dev:setup": "npm run db:setup && npm run db:test:setup",
     "start": "node index.js",
     "test": "find ./src -name '*.test.js' | NODE_ENV=test xargs mocha ./src"
   },

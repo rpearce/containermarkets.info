@@ -16,4 +16,8 @@ const loadSeeds = () => new Promise((resolve, reject) => {
   })
 })
 
-loadSchema().then(loadSeeds).then(process.exit)
+if (process.env.NODE_ENV === 'test') {
+  loadSchema().then(process.exit)
+} else {
+  loadSchema().then(loadSeeds).then(process.exit)
+}
