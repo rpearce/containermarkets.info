@@ -8,20 +8,20 @@ const bodyParser = require('koa-body')
 const convert = require('koa-convert')
 const session = require('koa-session')
 const csrf = require('koa-csrf')
+const route = require('koa-route')
 
 const config = require('../config')
 const db = require('../db')
-const homeRouter = require('../app/home/routes')
-const placesRouter = require('../app/places/routes')
+const routes = require('./routes')
 
-const app = new Koa()
+const app = module.exports = new Koa()
 
 // Session MGMT.
 // (use convert until it comes with promises)
 app.use(convert(session(app)))
 
 // Logger
-if (config.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test') {
   app.use(logger())
 }
 
@@ -56,19 +56,12 @@ app.use((ctx, next) => {
 // Should have this somewhere else.
 // app.use()
 
-// Home Routes
-app.use(homeRouter.routes())
-app.use(homeRouter.allowedMethods())
-
-// Places Routes
-app.use(placesRouter.routes())
-app.use(placesRouter.allowedMethods())
+// Routes
+app.use(route.get('/', routes.getPlaces))
+app.use(route.get('/about', routes.getAbout))
+app.use(route.get('/:slug', routes.getPlace))
 
 // Compress content delivery (gzip)
 app.use(compress())
 
-if (require.main === module) {
-  module.exports = app;
-} else {
-  app.listen(config.port, () => console.log(`listening on port ${config.port}`))
-}
+app.listen(config.port, () => console.log(`listening on port ${config.port}`))
