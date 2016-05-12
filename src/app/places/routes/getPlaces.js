@@ -2,12 +2,13 @@
 
 const db = require('../../../db')()
 const template = require('../views/index')
-const isJSONRequest = require('../../../server/utils').isJSONRequest
 
 module.exports = (ctx, next) => new Promise((resolve, reject) => {
+  const type = ctx.accepts('html', 'json')
+
   db.places.find(null, (err, places) => {
     if (err) return reject(err)
-    ctx.body = isJSONRequest(ctx.request) ? places : template(places)
+    ctx.body = type === 'json' ? places : template(places)
     resolve()
   })
 })

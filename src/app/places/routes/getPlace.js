@@ -2,21 +2,20 @@
 
 const db = require('../../../db')()
 const template = require('../views/show')
-const isJSONRequest = require('../../../server/utils').isJSONRequest
 
 module.exports = (ctx, slug) => new Promise((resolve, reject) => {
-  db.places.findOne({ slug }, (err, place) => {
-    const jsonRequest = isJSONRequest(ctx.request)
+  const type = ctx.accepts('html', 'json')
 
+  db.places.findOne({ slug }, (err, place) => {
     if (err) return reject(err)
     if (!place) {
       ctx.status = 404;
-      if (jsonRequest) {
+      if (type === 'json') {
         ctx.body = { error: 'not_found' }
       }
       return resolve()
     }
-    ctx.body = jsonRequest ? place : template(place)
+    ctx.body = type === 'json' ? place : template(place)
     resolve()
   })
 })
