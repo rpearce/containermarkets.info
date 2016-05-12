@@ -1,0 +1,10 @@
+{
+  "exec": "npm run css:build && node index.js",
+  "ext": "js json scss",
+  "verbose": true,
+  "watch": [
+    "index.js",
+    "src/"
+  ]
+}
+
