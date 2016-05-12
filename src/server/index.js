@@ -10,7 +10,7 @@ const session = require('koa-session')
 const csrf = require('koa-csrf')
 const route = require('koa-route')
 
-const config = require('../config')
+const config = require('./config')
 const db = require('../db')
 const routes = require('./routes')
 
