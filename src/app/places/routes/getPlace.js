@@ -6,7 +6,7 @@ const isJSONRequest = require('../../../server/utils').isJSONRequest
 
 module.exports = (ctx, slug) => new Promise((resolve, reject) => {
   db.places.findOne({ slug: slug }, (err, place) => {
-    const jsonRequest = isJSONRequest(ctx)
+    const jsonRequest = isJSONRequest(ctx.request)
 
     if (err) return reject(err)
     if (!place) {
