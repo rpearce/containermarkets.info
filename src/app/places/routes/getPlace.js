@@ -5,7 +5,7 @@ const template = require('../views/show')
 const isJSONRequest = require('../../../server/utils').isJSONRequest
 
 module.exports = (ctx, slug) => new Promise((resolve, reject) => {
-  db.places.findOne({ slug: slug }, (err, place) => {
+  db.places.findOne({ slug }, (err, place) => {
     const jsonRequest = isJSONRequest(ctx.request)
 
     if (err) return reject(err)
