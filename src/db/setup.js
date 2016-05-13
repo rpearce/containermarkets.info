@@ -1,23 +1,57 @@
 'use strict'
 
-const db = require('./index')()
+const { host, port, dbName } = require('./config')
+const r = require('rethinkdbdash')({ host, port })
+const { places } = require('./seeds')
 
-const loadSchema = () => new Promise((resolve, reject) => {
-  db.schema((err, _) => {
-    if (err) return reject(err);
-    resolve();
+const dropDB = (conn) => new Promise((resolve, reject) => {
+  r.dbDrop(dbName).run((err, res) => {
+    console.log('dropDB:', res)
+    resolve()
   })
 })
 
-const loadSeeds = () => new Promise((resolve, reject) => {
-  db.seeds((err, _) => {
-    if (err) return reject(err);
-    resolve();
+const createDB = () => new Promise((resolve, reject) => {
+  r.dbCreate(dbName).run((err, res) => {
+    if (err) return reject(err)
+    console.log('createDB:', res)
+    resolve()
   })
 })
 
-if (process.env.NODE_ENV === 'test') {
-  loadSchema().then(process.exit)
+const createPlacesTable = () => new Promise((resolve, reject) => {
+  r.db(dbName).tableCreate('places').run((err, res) => {
+    if (err) return reject(err)
+    console.log('createPlacesTable:', res)
+    resolve()
+  })
+})
+
+const insertPlaces = () => new Promise((resolve, reject) => {
+  r.db(dbName).table('places').insert(places).run((err, res) => {
+    if (err) return reject(err)
+    console.log('insertPlaces:', res)
+    resolve()
+  })
+})
+
+const indexSlugOnPlaces = () => new Promise((resolve, reject) => {
+  r.db(dbName).table('places').indexCreate('slug').run((err, res) => {
+    if (err) return reject(err)
+    console.log('indexSlugOnPlaces:', res)
+    resolve()
+  })
+})
+
+const actions = dropDB()
+  .then(createDB)
+  .then(createPlacesTable)
+  .then(indexSlugOnPlaces)
+
+if (process.env.NODE_ENV !== 'test') {
+  actions
+    .then(insertPlaces)
+    .then(process.exit)
 } else {
-  loadSchema().then(loadSeeds).then(process.exit)
+  actions.then(process.exit)
 }

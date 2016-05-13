@@ -6,8 +6,8 @@
   "scripts": {
     "css:build": "./bin/build-css",
     "css:watch": "./bin/watch-css",
-    "db:setup": "./bin/reset-db && node src/db/setup.js",
-    "db:test:setup": "./bin/reset-test-db && NODE_ENV=test node src/db/setup.js",
+    "db:setup": "node src/db/setup.js",
+    "db:test:setup": "NODE_ENV=test node src/db/setup.js",
     "db:dev:setup": "npm run db:setup && npm run db:test:setup",
     "start": "nodemon",
     "test": "find ./src -name '*.test.js' | NODE_ENV=test xargs mocha ./src"
@@ -33,8 +33,8 @@
     "koa-route": "^3.1.0",
     "koa-session": "^3.3.1",
     "koa-static": "^3.0.0",
-    "massive": "^2.2.0",
-    "pg": "^4.5.5"
+    "rethinkdb": "^2.3.1",
+    "rethinkdbdash": "^2.3.6"
   },
   "devDependencies": {
     "chai": "^3.5.0",

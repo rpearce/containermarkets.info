@@ -1,8 +1,7 @@
 'use strict'
 
-const dbConnDev  = 'postgres://localhost:5432/containermarkets'
-const dbConnTest = 'postgres://localhost:5432/containermarkets_test'
-
 module.exports = {
-  connectionString: process.env.DATABASE_URL || process.env.NODE_ENV === 'test' ? dbConnTest : dbConnDev
+  host: process.env.DATABASE_HOST || 'localhost',
+  port: process.env.DATABASE_PORT || '28015',
+  dbName: process.env.NODE_ENV === 'test' ? 'containermarkets_test' : 'containermarkets'
 }

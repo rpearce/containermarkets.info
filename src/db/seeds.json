@@ -1,0 +1,16 @@
+{
+  "places": [
+    { "name": "DeKalb Market"          , "slug": "dekalb-market-brooklyn"             , "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "BoxPark"                , "slug": "boxpark-london"                     , "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "ReStart Container Mall" , "slug": "restart-container-mall-christchurch", "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "Market 707"             , "slug": "market-707-toronto"                 , "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "Copenhagen Street Food" , "slug": "copenhagen-street-food-copenhagen"  , "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "Pop Brixton"            , "slug": "pop-brixton-london"                 , "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "Downtown Container Park", "slug": "downtown-container-park-las-vegas"  , "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "Wapping Wharf"          , "slug": "whapping-wharf-bristol"             , "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "Eat Street Markets"     , "slug": "eat-street-markets-brisbane"        , "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "Nightquarter"           , "slug": "nightquarter-queensland"            , "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "Granary Row"            , "slug": "granary-row-salt-lake-city"         , "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "Container Market"       , "slug": "container-market-thailand"          , "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" }
+  ]
+}
