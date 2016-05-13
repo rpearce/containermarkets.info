@@ -4,7 +4,7 @@ const { dbName } = require('./config')
 const r = require('./index')
 const { places } = require('./seeds')
 
-const dropDB = (conn) => new Promise((resolve, reject) => {
+const dropDB = () => new Promise((resolve, reject) => {
   r.dbDrop(dbName).run()
     .then((res) => console.log('dropDB:', res))
     .then(resolve)
