@@ -43,6 +43,7 @@ if (process.env.NODE_ENV !== 'test') {
   actions
     .then(insertPlaces)
     .then(process.exit)
+    .then(() => r.getPoolMaster().drain())
 } else {
-  actions.then(process.exit)
+  actions.then(() => r.getPoolMaster().drain())
 }
