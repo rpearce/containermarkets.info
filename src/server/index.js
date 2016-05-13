@@ -12,7 +12,6 @@ const serve = require('koa-static')
 const session = require('koa-session')
 
 const config = require('./config')
-const db = require('../db')
 const routes = require('./routes')
 
 const app = module.exports = new Koa()
@@ -30,12 +29,6 @@ app.use(favicon(__dirname + 'src/favicon.ico'));
 if (process.env.NODE_ENV !== 'test') {
   app.use(logger())
 }
-
-// Database
-app.use((ctx, next) => {
-  ctx.db = db
-  return next()
-})
 
 // Compress content delivery (gzip)
 app.use(compress())

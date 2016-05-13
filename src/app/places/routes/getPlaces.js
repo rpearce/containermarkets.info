@@ -1,14 +1,14 @@
 'use strict'
 
-const db = require('../../../db')()
+const { dbName } = require('../../../db/config')
+const r = require('../../../db/index')
 const template = require('../views/index')
 
 module.exports = (ctx, next) => new Promise((resolve, reject) => {
   const type = ctx.accepts('html', 'json')
 
-  db.places.find(null, (err, places) => {
-    if (err) return reject(err)
-    ctx.body = type === 'json' ? places : template(places)
-    resolve()
-  })
+  r.db(dbName).table('places').orderBy('name').run()
+    .then((places) => ctx.body = type === 'json' ? places : template(places))
+    .then(resolve)
+    .catch(reject)
 })

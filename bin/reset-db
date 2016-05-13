@@ -1,2 +1,0 @@
-dropdb containermarkets --if-exists
-createdb containermarkets

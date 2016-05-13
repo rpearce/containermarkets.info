@@ -1,6 +1,7 @@
 const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
-const db = require('../../../db')()
+const { dbName } = require('../../../db/config')
+const r = require('../../../db/index')
 
 describe('Place', () => {
   beforeEach((done) => destroyPlaces().then(done))
@@ -14,7 +15,7 @@ describe('Place', () => {
             .expect('Content-Type', /text/)
             .expect(200)
             .end(done)
-        })
+        }).catch(done)
       })
     })
 
@@ -29,13 +30,12 @@ describe('Place', () => {
               id: place.id,
               slug: place.slug,
               name: place.name,
-              image: place.image,
               created_at: place.created_at.toISOString(),
               updated_at: place.updated_at.toISOString()
             })
             .expect(200)
             .end(done)
-        })
+        }).catch(done)
       })
     })
   })
@@ -66,14 +66,21 @@ describe('Place', () => {
 })
 
 const createPlace = () => new Promise((resolve, reject) => {
-  db.places.save({ slug: 'dekalb-market-brooklyn', name: 'Dekalb Market' }, (err, place) => {
-    if (err) return reject(err)
-    resolve(place)
+  const place = {
+    slug: 'dekalb-market-brooklyn',
+    name: 'Dekalb Market',
+    created_at: new Date(),
+    updated_at: new Date()
+  }
+
+  r.db(dbName).table('places').insert(place).run().then((res) => {
+    const id = res.generated_keys[0]
+    r.db(dbName).table('places').get(id).run().then(resolve)
   })
 })
 
 const destroyPlaces = () => new Promise((resolve, reject) => {
-  db.places.destroy({}, (err) => {
+  r.db(dbName).table('places').delete().run((err, res) => {
     if (err) return reject(err)
     resolve()
   })
