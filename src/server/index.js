@@ -4,6 +4,7 @@ const Koa = require('koa')
 const compress = require('koa-compress')
 const convert = require('koa-convert')
 const bodyParser = require('koa-body')
+const favicon = require('koa-favicon')
 const logger = require('koa-logger')
 const lusca = require('koa-lusca')
 const route = require('koa-route')
@@ -16,9 +17,14 @@ const routes = require('./routes')
 
 const app = module.exports = new Koa()
 
+app.keys = [config.sessionKey]
+
 // Session MGMT.
 // (use convert until it comes with promises)
 app.use(convert(session(app)))
+
+// Favicon
+app.use(favicon(__dirname + 'src/favicon.ico'));
 
 // Logger
 if (process.env.NODE_ENV !== 'test') {
