@@ -5,42 +5,33 @@ const r = require('rethinkdbdash')({ host, port })
 const { places } = require('./seeds')
 
 const dropDB = (conn) => new Promise((resolve, reject) => {
-  r.dbDrop(dbName).run((err, res) => {
-    console.log('dropDB:', res)
-    resolve()
-  })
+  r.dbDrop(dbName).run()
+    .then((res) => console.log('dropDB:', res))
+    .then(resolve)
 })
 
 const createDB = () => new Promise((resolve, reject) => {
-  r.dbCreate(dbName).run((err, res) => {
-    if (err) return reject(err)
-    console.log('createDB:', res)
-    resolve()
-  })
+  r.dbCreate(dbName).run()
+    .then((res) => console.log('createDB:', res))
+    .then(resolve)
 })
 
 const createPlacesTable = () => new Promise((resolve, reject) => {
-  r.db(dbName).tableCreate('places').run((err, res) => {
-    if (err) return reject(err)
-    console.log('createPlacesTable:', res)
-    resolve()
-  })
+  r.db(dbName).tableCreate('places').run()
+    .then((res) => console.log('createPlacesTable:', res))
+    .then(resolve)
 })
 
 const insertPlaces = () => new Promise((resolve, reject) => {
-  r.db(dbName).table('places').insert(places).run((err, res) => {
-    if (err) return reject(err)
-    console.log('insertPlaces:', res)
-    resolve()
-  })
+  r.db(dbName).table('places').insert(places).run()
+    .then((res) => console.log('insertPlaces:', res))
+    .then(resolve)
 })
 
 const indexSlugOnPlaces = () => new Promise((resolve, reject) => {
-  r.db(dbName).table('places').indexCreate('slug').run((err, res) => {
-    if (err) return reject(err)
-    console.log('indexSlugOnPlaces:', res)
-    resolve()
-  })
+  r.db(dbName).table('places').indexCreate('slug').run()
+    .then((res) => console.log('indexSlugOnPlaces:', res))
+    .then(resolve)
 })
 
 const actions = dropDB()
