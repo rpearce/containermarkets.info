@@ -1,7 +1,7 @@
 'use strict'
 
-const { host, port, dbName } = require('../../../db/config')
-const r = require('rethinkdbdash')({ host, port })
+const { dbName } = require('../../../db/config')
+const r = require('../../../db/index')
 const template = require('../views/index')
 
 module.exports = (ctx, next) => new Promise((resolve, reject) => {

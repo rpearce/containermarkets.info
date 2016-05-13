@@ -1,7 +1,7 @@
 const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
-const { host, port, dbName } = require('../../../db/config')
-const r = require('rethinkdbdash')({ host, port })
+const { dbName } = require('../../../db/config')
+const r = require('../../../db/index')
 
 describe('Place', () => {
   beforeEach((done) => destroyPlaces().then(done))

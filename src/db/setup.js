@@ -1,7 +1,7 @@
 'use strict'
 
-const { host, port, dbName } = require('./config')
-const r = require('rethinkdbdash')({ host, port })
+const { dbName } = require('./config')
+const r = require('./index')
 const { places } = require('./seeds')
 
 const dropDB = (conn) => new Promise((resolve, reject) => {
