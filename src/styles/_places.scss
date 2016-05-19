@@ -1,5 +1,5 @@
 .places {
-  background-color: #6F9698;
+  background-color: #D67F7D;
   color: $white;
 }
 .places__list {
@@ -9,7 +9,7 @@
   > li {
     margin: 1em 0;
     > a {
-      color: $white;
+      color: inherit;
       text-decoration: none;
       border-bottom: 1px solid;
     }
