@@ -10,7 +10,7 @@
     "db:test:setup": "NODE_ENV=test node src/db/setup.js",
     "db:dev:setup": "npm run db:setup && npm run db:test:setup",
     "start": "nodemon",
-    "test": "find ./src -name '*.test.js' | NODE_ENV=test xargs mocha ./src"
+    "test": "NODE_ENV=test mocha --recursive ./src/**/*.test.js"
   },
   "repository": {
     "type": "git",
