@@ -1,0 +1,17 @@
+.places {
+  background-color: #6F9698;
+  color: $white;
+}
+.places__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  > li {
+    margin: 1em 0;
+    > a {
+      color: $white;
+      text-decoration: none;
+      border-bottom: 1px solid;
+    }
+  }
+}

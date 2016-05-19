@@ -11,7 +11,6 @@ module.exports = ({ title, body, description, type = 'website', uri = 'http://co
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
-      <meta name="google-site-verification" content="QX4bn65yOXBfgnwxlO09yIBc1H8blur-Erx3lmsDVhU">
       <meta name="description" content="${description}">
 
       <meta property="og:site_name" content="containermarkets.info">

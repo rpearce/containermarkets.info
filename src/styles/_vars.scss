@@ -1,11 +1,12 @@
-$fontFamily         : Georgia, serif;
-$fontFamily--header : "Helvetica Neue", Arial, sans-serif;
+$fontFamily         : Arial, "Helvetica Neue", Helvetica, sans-serif;
+$fontFamily--header : $fontFamily;
 $fontSize--root     : 16px;
-$fontSize--small    : 0.813rem;
-$fontSize--h1       : 2.625rem;
-$fontSize--h2       : 1.625rem;
-$fontSize--h3       : 1.250rem;
-$lineHeight--base   : 1.643;
+$fontSize--large    : 18px;
+/*$fontSize--small    : 0.813rem;*/
+/*$fontSize--h1       : 2.625rem;*/
+/*$fontSize--h2       : 1.625rem;*/
+/*$fontSize--h3       : 1.250rem;*/
+$lineHeight--base   : 1.5;
 
 $white              : #FFFFFF;
 $gray               : #727D84;
@@ -17,7 +18,7 @@ $green--dark        : #09965F;
 $turqoise           : #6FBBB7;
 $turqoise--dark     : #5B9D99;
 
-$bodyColor          : $gray--dark;
+$bodyColor          : #5E5E5E;
 
-$break--small       : 668px;
-$break--medium      : 1025px;
+$break--small       : 768px;
+$break--medium      : 1024px;
