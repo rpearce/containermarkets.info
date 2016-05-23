@@ -2,8 +2,26 @@
 
 const layout = require('../../../layouts')
 
-module.exports = ({ name, slug }) => {
-  const title = name
-  const body = `This is the page for ${name}`
-  return layout({ title, body })
+module.exports = (place) => {
+  const title = place.name
+  const description = place.description
+  const content = place.content
+  const body = buildBody({ title, description, content })
+  const type = 'article'
+  return layout({ title, description, type, body })
 }
+
+const buildBody = ({ title, description, content }) =>
+  `<article>
+    <header class="hero section">
+      <div class="l--constrained">
+        <h1>${title}</h1>
+        <h2>${description}</h2>
+      </div>
+    </header>
+    <section class="section">
+      <div class="l--constrained">
+        ${content}
+      </div<
+    </section>
+  </article>`

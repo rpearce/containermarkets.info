@@ -65,5 +65,6 @@ app.use(lusca({
 app.use(route.get('/', routes.getPlaces))
 app.use(route.get('/about', routes.getAbout))
 app.use(route.get('/:slug', routes.getPlace))
+app.use(route.get('/:slug/edit', routes.getPlaceEdit))
 
 app.listen(config.port, () => console.log(`listening on port ${config.port}`))
