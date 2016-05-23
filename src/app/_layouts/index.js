@@ -22,5 +22,8 @@ module.exports = ({ title, body, description, type = 'website', uri = 'http://co
       <link rel="canonical" href="${uri}">
       <link href="/app.css" rel="stylesheet">
     </head>
-    <body>${body}</body>
+    <body>
+      ${body}
+      <script src="/app.js" async></script>
+    </body>
   </html>`

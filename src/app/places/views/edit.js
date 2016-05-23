@@ -1,6 +1,6 @@
 'use strict'
 
-const layout = require('../../../layouts')
+const layout = require('../../_layouts')
 
 module.exports = (place) => {
   const title = `${place.name} – Edit`
@@ -43,7 +43,7 @@ const buildBody = ({ title, place }) =>
         </div>
         <div class="form__section">
           <label for="place_content">Content</label>
-          <textarea name="place[content]" id="place_content" placeholder="Enter markdown content here..." rows="1" required>${place.content}</textarea>
+          <textarea name="place[content]" id="place_content" placeholder="Enter markdown content here..." rows="1" data-js="textarea" required>${place.content}</textarea>
         </div>
         <div class="form__section">
           <button type="submit">Update Place</button>

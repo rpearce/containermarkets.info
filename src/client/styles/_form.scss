@@ -29,9 +29,11 @@
   border: none;
   border-left: 1px solid #D6D6D6;
   resize: none;
+  line-height: 1.5;
 }
 .form button[type="submit"],
 .form input[type="submit"] {
+  cursor: pointer;
   background-color: #90C695;
   border: none;
   padding: 1em;

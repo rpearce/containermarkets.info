@@ -1,0 +1,1 @@
+browserify src/client/scripts/index.js | uglifyjs > src/public/app.js
