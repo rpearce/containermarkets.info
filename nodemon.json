@@ -5,6 +5,10 @@
   "watch": [
     "index.js",
     "src/"
+  ],
+  "ignore": [
+    "*.test.js",
+    "src/public/*"
   ]
 }
 

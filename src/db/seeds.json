@@ -1,6 +1,7 @@
 {
   "places": [
     { "name": "BOXPARK Shoreditch", "slug": "boxpark-shoreditch-london", "description": "Lorem ipsum dolor", "content": "", "address": "2-10 Bethnal Green Rd, London, E1 6GY, UK", "lat": "51.5234910", "long": "-0.0764070", "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
+    { "name": "BOXPARK Croydon", "slug": "boxpark-croydon-london", "description": "Lorem ipsum dolor", "content": "", "address": "", "lat": "", "long": "", "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
     { "name": "Re:START Container Mall" , "slug": "restart-container-mall-christchurch", "description": "Lorem ipsum dolor", "content": "", "address": "84/126 Cashel St, CBD, Christchurch 8011, New Zealand", "lat": "-43.5332770", "long": "172.6356860", "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
     { "name": "Market 707", "slug": "market-707-toronto", "description": "Lorem ipsum dolor", "content": "", "address": "707 Dundas St W, Toronto, ON M5T 2W6, Canada", "lat": "43.6517660", "long": "-79.4049650", "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
     { "name": "Copenhagen Street Food" , "slug": "copenhagen-street-food", "description": "Lorem ipsum dolor", "content": "", "address": "Trangravsvej 14, 7/8, 1436 København K, Denmark", "lat": "55.6783100", "long": "12.5988060", "created_at": "2016-05-13T11:18:31.047Z", "updated_at": "2016-05-13T11:18:31.047Z" },
