@@ -66,5 +66,6 @@ app.use(route.get('/', routes.getPlaces))
 app.use(route.get('/about', routes.getAbout))
 app.use(route.get('/:slug', routes.getPlace))
 app.use(route.get('/:slug/edit', routes.getPlaceEdit))
+app.use(route.post('/:slug', routes.updatePlace))
 
 app.listen(config.port, () => console.log(`listening on port ${config.port}`))

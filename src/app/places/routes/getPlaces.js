@@ -10,5 +10,5 @@ module.exports = (ctx, next) => new Promise((resolve, reject) => {
   r.db(dbName).table('places').orderBy('name').run()
     .then((places) => ctx.body = type === 'json' ? places : template(places))
     .then(resolve)
-    .catch(reject)
+    .error(reject)
 })

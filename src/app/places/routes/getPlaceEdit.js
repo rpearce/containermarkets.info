@@ -10,11 +10,10 @@ module.exports = (ctx, slug) => new Promise((resolve, reject) => {
       const place = res[0]
 
       if (!place) {
-        ctx.status = 404;
         return resolve()
       }
 
-      ctx.body = template(place)
+      ctx.body = template({ place, csrfToken: ctx.state._csrf })
     })
     .then(resolve)
     .catch(reject)

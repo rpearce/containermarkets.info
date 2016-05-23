@@ -3,7 +3,7 @@
 //<meta property="og:image" content="${imageURI}">
 //<link href="http://fonts.googleapis.com/css?family=Lato:400" rel="stylesheet" type="text/css">
 
-module.exports = ({ title, body, description, type = 'website', uri = 'http://containermarkets.info' }) =>
+module.exports = ({ title, body, description, type = 'website', uri = 'http://containermarkets.info', csrfToken }) =>
   `<html lang="en">
     <head>
       <title>${title}</title>

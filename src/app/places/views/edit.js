@@ -2,13 +2,13 @@
 
 const layout = require('../../_layouts')
 
-module.exports = (place) => {
+module.exports = ({ place, csrfToken }) => {
   const title = `${place.name} – Edit`
-  const body = buildBody({ title, place })
+  const body = buildBody({ title, place, csrfToken })
   return layout({ title, body })
 }
 
-const buildBody = ({ title, place }) =>
+const buildBody = ({ title, place, csrfToken }) =>
   `<header class="hero section">
     <div class="l--constrained">
       <h1>${title}</h1>
@@ -16,7 +16,8 @@ const buildBody = ({ title, place }) =>
   </header>
   <section class="section">
     <div class="l--constrained">
-      <form method="PATCH" url="/${place.slug}" class="form">
+      <form method="POST" action="/${place.slug}" class="form">
+        <input type="hidden" name="_csrf" value="${csrfToken}" />
         <div class="form__section">
           <label for="place_name">Name</label>
           <input type="text" name="place[name]" id="place_name" value="${place.name}" required />

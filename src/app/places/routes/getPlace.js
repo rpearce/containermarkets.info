@@ -12,7 +12,7 @@ module.exports = (ctx, slug) => new Promise((resolve, reject) => {
       const place = res[0]
 
       if (!place) {
-        ctx.status = 404;
+        ctx.status = 404
         if (type === 'json') {
           ctx.body = { error: 'not_found' }
         }
