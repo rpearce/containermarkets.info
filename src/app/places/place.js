@@ -6,6 +6,14 @@ const cleanProps = (params) =>
     return mem
   }, {})
 
+const isValid = (params) => {
+  for (let p of allowedProps) {
+    if (!params[p]) return false
+  }
+  return true
+}
+
 module.exports = {
-  cleanProps
+  cleanProps,
+  isValid
 }

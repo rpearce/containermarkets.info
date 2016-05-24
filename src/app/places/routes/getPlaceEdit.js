@@ -8,11 +8,7 @@ module.exports = (ctx, slug) => new Promise((resolve, reject) => {
   r.db(dbName).table('places').filter({ slug }).run()
     .then((res) => {
       const place = res[0]
-
-      if (!place) {
-        return resolve()
-      }
-
+      if (!place) return resolve()
       ctx.body = template({ place, csrfToken: ctx.state._csrf })
     })
     .then(resolve)

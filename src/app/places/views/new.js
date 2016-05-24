@@ -3,9 +3,9 @@
 const layout = require('../../_layouts')
 const form = require('./_form')
 
-module.exports = ({ place, csrfToken }) => {
-  const title = 'Edit Place'
-  const body = buildBody({ title, place, csrfToken })
+module.exports = (csrfToken) => {
+  const title = 'New Place'
+  const body = buildBody({ title, csrfToken })
   return layout({ title, body })
 }
 
@@ -18,7 +18,7 @@ const buildBody = ({ title, place, csrfToken }) =>
   </header>
   <section class="section">
     <div class="l--constrained">
-      ${form({ action: '/${place.slug}', place })}
-    </div<
+      ${form({ action: '/', csrfToken })}
+    </div>
   </section>
   `
