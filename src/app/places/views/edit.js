@@ -5,11 +5,12 @@ const form = require('./_form')
 
 module.exports = ({ place, csrfToken }) => {
   const title = 'Edit Place'
-  const body = buildBody({ title, place, csrfToken })
+  const formData = { action: `/${place.slug}`, place, csrfToken }
+  const body = buildBody({ title, formData })
   return layout({ title, body })
 }
 
-const buildBody = ({ title, place, csrfToken }) =>
+const buildBody = ({ title, formData }) =>
   `
   <header class="hero section">
     <div class="l--constrained">
@@ -18,7 +19,7 @@ const buildBody = ({ title, place, csrfToken }) =>
   </header>
   <section class="section">
     <div class="l--constrained">
-      ${form({ action: '/${place.slug}', place })}
+      ${form(formData)}
     </div<
   </section>
   `
