@@ -19,7 +19,14 @@ module.exports = (ctx, _) => new Promise((resolve, reject) => {
       })
       .error(reject)
   } else {
-    ctx.status = 422
+    //const template = require('../views/new')
+    //ctx.status = 422
+    //ctx.body = template({
+    //  csrfToken: ctx.state._csrf,
+    //  errors: ['You fucked up', 'Another error'],
+    //  place: params
+    //})
+    //resolve()
     reject()
   }
 })

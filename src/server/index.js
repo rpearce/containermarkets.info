@@ -40,21 +40,23 @@ app.use(serve('src/public'))
 app.use(bodyParser())
 
 // CSRF
-app.use(lusca({
-  csrf: {
-    secret: config.sessionKey
-  },
-  xframe: 'SAMEORIGIN',
-  csp: {
-    'default-src': "'self'",
-    'img-src': '*'
-  },
-  hsts: {
-    maxAge: 31536000,
-    includeSubDomains: true
-  },
-  xssProtection: true
-}))
+if (process.env.NODE_ENV !== 'test') {
+  app.use(lusca({
+    csrf: {
+      secret: config.sessionKey
+    },
+    xframe: 'SAMEORIGIN',
+    csp: {
+      'default-src': "'self'",
+      'img-src': '*'
+    },
+    hsts: {
+      maxAge: 31536000,
+      includeSubDomains: true
+    },
+    xssProtection: true
+  }))
+}
 
 // Protect routes behind auth rules
 // and give 404 if not auth'd.
