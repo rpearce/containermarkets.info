@@ -29,10 +29,15 @@ describe('Place', () => {
             .expect('Content-Type', /json/)
             .expect({
               id: place.id,
-              slug: place.slug,
               name: place.name,
-              created_at: place.created_at.toISOString(),
-              updated_at: place.updated_at.toISOString()
+              slug: place.slug,
+              address: place.address,
+              lat: place.lat,
+              long: place.long,
+              description: place.description,
+              content: place.content,
+              created_at: place.created_at,
+              updated_at: place.updated_at
             })
             .expect(200)
             .end(done)

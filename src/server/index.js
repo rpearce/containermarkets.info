@@ -12,7 +12,8 @@ const serve = require('koa-static')
 const session = require('koa-session')
 
 const config = require('./config')
-const routes = require('./routes')
+const homeRoutes = require('../app/home/routes')
+const placeRoutes = require('../app/places/routes')
 
 const app = module.exports = new Koa()
 
@@ -64,12 +65,12 @@ if (process.env.NODE_ENV !== 'test') {
 // app.use()
 
 // Routes
-app.use(route.get('/', routes.getPlaces))
-app.use(route.get('/about', routes.getAbout))
-app.use(route.get('/new', routes.newPlace))
-app.use(route.get('/:slug', routes.getPlace))
-app.use(route.get('/:slug/edit', routes.editPlace))
-app.use(route.post('/', routes.createPlace))
-app.use(route.post('/:slug', routes.updatePlace))
+app.use(route.get('/', placeRoutes.getPlaces))
+app.use(route.get('/about', homeRoutes.getAbout))
+app.use(route.get('/new', placeRoutes.newPlace))
+app.use(route.get('/:slug', placeRoutes.getPlace))
+app.use(route.get('/:slug/edit', placeRoutes.editPlace))
+app.use(route.post('/', placeRoutes.createPlace))
+app.use(route.post('/:slug', placeRoutes.updatePlace))
 
 app.listen(config.port, () => console.log(`listening on port ${config.port}`))
