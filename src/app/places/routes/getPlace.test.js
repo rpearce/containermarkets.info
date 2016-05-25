@@ -1,3 +1,5 @@
+'use strict'
+
 const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
 const { createPlace, destroyPlaces } = require('../../../db/test_helpers')
