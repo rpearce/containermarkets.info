@@ -1,9 +1,9 @@
 'use strict'
 
-const app = require('../../../../server/index')
+const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
-const { dbName } = require('../../../../db/config')
-const { createPlace, destroyPlaces } = require('../../../../db/test_helpers')
+const { dbName } = require('../../../db/config')
+const { createPlace, destroyPlaces } = require('../../../db/test_helpers')
 
 describe('Place Edit', () => {
   beforeEach((done) => destroyPlaces().then(done))

@@ -1,7 +1,7 @@
 'use strict'
 
-const { dbName } = require('../../../../db/config')
-const r = require('../../../../db')
+const { dbName } = require('../../../db/config')
+const r = require('../../../db')
 const template = require('./template')
 
 module.exports = (ctx, slug) => new Promise((resolve, reject) => {

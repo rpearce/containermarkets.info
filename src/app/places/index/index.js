@@ -1,8 +1,8 @@
 'use strict'
 
-const { dbName } = require('../../../../db/config')
-const r = require('../../../../db')
-const template = require('../../views/index')
+const { dbName } = require('../../../db/config')
+const r = require('../../../db')
+const template = require('./template')
 
 module.exports = (ctx, next) => new Promise((resolve, reject) => {
   const type = ctx.accepts('html', 'json')

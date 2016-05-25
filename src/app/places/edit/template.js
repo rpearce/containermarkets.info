@@ -1,11 +1,11 @@
 'use strict'
 
-const layout = require('../../../_layouts')
-const form = require('../../views/_form')
+const layout = require('../../_layouts')
+const form = require('../_shared/_form')
 
 module.exports = ({ csrfToken, errors, place }) => {
-  const title = 'New Place'
-  const formData = { action: '/', csrfToken, errors, place }
+  const title = 'Edit Place'
+  const formData = { action: `/${place.slug}`, csrfToken, place }
   const body = buildBody({ title, formData })
   return layout({ title, body })
 }
@@ -20,6 +20,6 @@ const buildBody = ({ title, formData }) =>
   <section class="section">
     <div class="l--constrained">
       ${form(formData)}
-    </div>
+    </div<
   </section>
   `

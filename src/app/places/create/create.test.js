@@ -1,8 +1,8 @@
 'use strict'
 
-const app = require('../../../../server/index')
+const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
-const { dbName } = require('../../../../db/config')
+const { dbName } = require('../../../db/config')
 
 describe('Place Create - POST /', () => {
   describe('with valid attributes', () => {
