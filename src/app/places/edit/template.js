@@ -1,6 +1,6 @@
 'use strict'
 
-const layout = require('../../_layouts')
+const layout = require('../../_layouts/admin')
 const form = require('../_shared/_form')
 
 module.exports = ({ csrfToken, errors, place }) => {

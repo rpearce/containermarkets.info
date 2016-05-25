@@ -24,5 +24,6 @@ module.exports = ({ title, body, description, type = 'website', uri = 'http://co
     </head>
     <body>
       ${body}
+      <script src="/app.js" async></script>
     </body>
   </html>`
