@@ -1,10 +1,14 @@
 {
-  "exec": "npm run css:build && node index.js",
+  "exec": "npm run css:build && npm run js:build && node index.js",
   "ext": "js json scss",
   "verbose": true,
   "watch": [
     "index.js",
     "src/"
+  ],
+  "ignore": [
+    "*.test.js",
+    "src/public/*"
   ]
 }
 

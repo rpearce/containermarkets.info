@@ -1,8 +1,8 @@
 'use strict'
 
 const { dbName } = require('../../../db/config')
-const r = require('../../../db/index')
-const template = require('../views/show')
+const r = require('../../../db')
+const template = require('./template')
 
 module.exports = (ctx, slug) => new Promise((resolve, reject) => {
   const type = ctx.accepts('html', 'json')
@@ -12,7 +12,7 @@ module.exports = (ctx, slug) => new Promise((resolve, reject) => {
       const place = res[0]
 
       if (!place) {
-        ctx.status = 404;
+        ctx.status = 404
         if (type === 'json') {
           ctx.body = { error: 'not_found' }
         }
