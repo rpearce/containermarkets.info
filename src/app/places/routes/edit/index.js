@@ -1,8 +1,8 @@
 'use strict'
 
-const { dbName } = require('../../../db/config')
-const r = require('../../../db')
-const template = require('../views/edit')
+const { dbName } = require('../../../../db/config')
+const r = require('../../../../db')
+const template = require('../../views/edit')
 
 module.exports = (ctx, slug) => new Promise((resolve, reject) => {
   r.db(dbName).table('places').filter({ slug }).run()

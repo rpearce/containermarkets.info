@@ -1,6 +1,6 @@
 'use strict'
 
-const app = require('../../../server/index')
+const app = require('../../../../server/index')
 const request = require('supertest').agent(app.listen());
 
 describe('Places', () => {

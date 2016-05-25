@@ -1,5 +1,5 @@
-const getAbout = require('./getAbout')
+const aboutRoute = require('./about')
 
 module.exports = {
-  getAbout
+  aboutRoute
 }

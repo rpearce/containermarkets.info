@@ -1,8 +1,8 @@
 'use strict'
 
-const { dbName } = require('../../../db/config')
-const r = require('../../../db')
-const { cleanProps, isValid } = require('../place')
+const { dbName } = require('../../../../db/config')
+const r = require('../../../../db')
+const { cleanProps, isValid } = require('../../place')
 
 module.exports = (ctx, slug) => new Promise((resolve, reject) => {
   const params = cleanProps(ctx.request.body.place)

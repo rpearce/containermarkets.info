@@ -65,12 +65,12 @@ if (process.env.NODE_ENV !== 'test') {
 // app.use()
 
 // Routes
-app.use(route.get('/', placeRoutes.getPlaces))
-app.use(route.get('/about', homeRoutes.getAbout))
-app.use(route.get('/new', placeRoutes.newPlace))
-app.use(route.get('/:slug', placeRoutes.getPlace))
-app.use(route.get('/:slug/edit', placeRoutes.editPlace))
-app.use(route.post('/', placeRoutes.createPlace))
-app.use(route.post('/:slug', placeRoutes.updatePlace))
+app.use(route.get('/', placeRoutes.indexRoute))
+app.use(route.get('/about', homeRoutes.aboutRoute))
+app.use(route.get('/new', placeRoutes.newRoute))
+app.use(route.get('/:slug', placeRoutes.showRoute))
+app.use(route.get('/:slug/edit', placeRoutes.editRoute))
+app.use(route.post('/', placeRoutes.createRoute))
+app.use(route.post('/:slug', placeRoutes.updateRoute))
 
 app.listen(config.port, () => console.log(`listening on port ${config.port}`))
