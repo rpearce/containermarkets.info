@@ -31,14 +31,13 @@ describe('Place UPDATE - POST /', () => {
     })
   })
 
-  //describe('with invalid attributes', () => {
-  //  it('does not update and renders edit', (done) => {
-  //    request
-  //      .post('/')
-  //      .send({ place: {} })
-  //      .expect(422)
-  //      .expect('Location', '/')
-  //      .end(done)
-  //  })
-  //})
+  describe('with invalid attributes', () => {
+    it('does not update and renders edit', (done) => {
+      request
+        .post('/')
+        .send({ place: {} })
+        .expect(422)
+        .end(done)
+    })
+  })
 })

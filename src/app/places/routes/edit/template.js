@@ -1,11 +1,11 @@
 'use strict'
 
-const layout = require('../../_layouts')
-const form = require('./_form')
+const layout = require('../../../_layouts')
+const form = require('../../views/_form')
 
-module.exports = ({ place, csrfToken }) => {
+module.exports = ({ csrfToken, errors, place }) => {
   const title = 'Edit Place'
-  const formData = { action: `/${place.slug}`, place, csrfToken }
+  const formData = { action: `/${place.slug}`, csrfToken, place }
   const body = buildBody({ title, formData })
   return layout({ title, body })
 }

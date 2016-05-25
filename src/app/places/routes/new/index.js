@@ -1,8 +1,9 @@
 'use strict'
 
-const template = require('../../views/new')
+const { model } = require('../../place')
+const template = require('./template')
 
 module.exports = (ctx, _) => new Promise((resolve, reject) => {
-  ctx.body = template(ctx.state._csrf)
+  ctx.body = template({ csrfToken: ctx.state._csrf, place: model })
   resolve()
 })

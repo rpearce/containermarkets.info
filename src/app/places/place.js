@@ -16,7 +16,18 @@ const isValid = (params) => {
   return true
 }
 
+const model = {
+  name: '',
+  slug: '',
+  address: '',
+  lat: '',
+  long: '',
+  description: '',
+  content: ''
+}
+
 module.exports = {
   cleanProps,
-  isValid
+  isValid,
+  model
 }
