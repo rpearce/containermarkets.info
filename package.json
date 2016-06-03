@@ -7,9 +7,9 @@
     "css:build": "./bin/css-build",
     "css:watch": "./bin/css-watch",
     "js:build": "./bin/js-build",
-    "db:setup": "node src/db/setup.js",
-    "db:test:setup": "NODE_ENV=test node src/db/setup.js",
-    "db:dev:setup": "npm run db:setup && npm run db:test:setup",
+    "db:setup": "npm run db:dev:setup && npm run db:test:setup",
+    "db:dev:setup": "./bin/db-reset && node src/db/setup.js",
+    "db:test:setup": "./bin/db-reset-test && NODE_ENV=test node src/db/setup.js",
     "start": "nodemon",
     "test": "NODE_ENV=test mocha --recursive ./src/**/*.test.js"
   },
@@ -34,8 +34,7 @@
     "koa-route": "^3.1.0",
     "koa-session": "^3.3.1",
     "koa-static": "^3.0.0",
-    "rethinkdb": "^2.3.1",
-    "rethinkdbdash": "^2.3.6"
+    "pg-promise": "^4.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
