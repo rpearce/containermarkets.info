@@ -1,16 +1,13 @@
 'use strict'
 
-const { dbName } = require('../../../db/config')
-const r = require('../../../db')
+const { db } = require('../../../db')
 const template = require('./template')
 
 module.exports = (ctx, slug) => new Promise((resolve, reject) => {
   const type = ctx.accepts('html', 'json')
 
-  r.db(dbName).table('places').filter({ slug }).run()
-    .then((res) => {
-      const place = res[0]
-
+  db.places.find(slug)
+    .then(place => {
       if (!place) {
         ctx.status = 404
         if (type === 'json') {

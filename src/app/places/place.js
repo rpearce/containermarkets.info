@@ -18,8 +18,8 @@ const model = {
   name: '',
   slug: '',
   address: '',
-  lat: '',
-  long: '',
+  latitude: '',
+  longitude: '',
   description: '',
   content: ''
 }

@@ -2,7 +2,6 @@
 
 const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
-const { dbName } = require('../../../db/config')
 const { createPlace, destroyPlaces } = require('../../../db/test_helpers')
 
 describe('Place UPDATE - POST /', () => {
@@ -18,8 +17,8 @@ describe('Place UPDATE - POST /', () => {
               name: place.name,
               slug: place.slug,
               address: place.address,
-              lat: place.lat,
-              long: place.long,
+              latitude: place.latitude,
+              longitude: place.longitude,
               description: place.description,
               content: '### SOMETHING NEW'
             }

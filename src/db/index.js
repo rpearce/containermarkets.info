@@ -1,7 +1,7 @@
 'use strict'
 
 const pgpLib = require('pg-promise')
-const places = require('./orms/places')
+const places = require('./interfaces/places')
 
 // pg-promise initialization options
 const options = {

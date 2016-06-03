@@ -2,6 +2,22 @@
 -- Inserts new place record
 ------------------------------------------------------------
 
-INSERT INTO places
-VALUES($1, $2, $3, $4, $5, $6, $7)
+INSERT INTO places (
+  name,
+  slug,
+  description,
+  content,
+  address,
+  latitude,
+  longitude
+)
+VALUES(
+  ${name},
+  ${slug},
+  ${description},
+  ${content},
+  ${address},
+  ${latitude},
+  ${longitude}
+)
 RETURNING slug;
