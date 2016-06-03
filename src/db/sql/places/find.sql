@@ -1,2 +1,5 @@
-SELECT * FROM places
-WHERE slug = $1;
+------------------------------------------------------------
+-- Finds place records by slug
+------------------------------------------------------------
+
+SELECT * FROM places WHERE slug = $1;
