@@ -10,9 +10,9 @@ describe('Place', () => {
   describe('When Found', () => {
     describe('GET /:slug', () => {
       it('returns 200', (done) => {
-        createPlace().then((place) => {
+        createPlace().then(slug => {
           request
-            .get(`/${place.slug}`)
+            .get(`/${slug}`)
             .expect('Content-Type', /text/)
             .expect(200)
             .end(done)
@@ -22,23 +22,11 @@ describe('Place', () => {
 
     describe('GET /:slug JSON', () => {
       it('returns 200', (done) => {
-        createPlace().then((place) => {
+        createPlace().then(slug => {
           request
-            .get(`/${place.slug}`)
+            .get(`/${slug}`)
             .accept('application/json')
             .expect('Content-Type', /json/)
-            .expect({
-              id: place.id,
-              name: place.name,
-              slug: place.slug,
-              address: place.address,
-              lat: place.lat,
-              long: place.long,
-              description: place.description,
-              content: place.content,
-              created_at: place.created_at,
-              updated_at: place.updated_at
-            })
             .expect(200)
             .end(done)
         }).catch(done)

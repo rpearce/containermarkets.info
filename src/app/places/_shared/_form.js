@@ -24,11 +24,11 @@ module.exports = ({
     </div>
     <div class="form__section">
       <label for="place_lat">Latitude</label>
-      <input type="text" name="place[lat]" id="place_lat" value="${place.lat}" required />
+      <input type="text" name="place[latitude]" id="place_latitude" value="${place.latitude}" required />
     </div>
     <div class="form__section">
       <label for="place_long">Longitude</label>
-      <input type="text" name="place[long]" id="place_long" value="${place.long}" required />
+      <input type="text" name="place[longitude]" id="place_longitude" value="${place.longitude}" required />
     </div>
     <div class="form__section">
       <label for="place_description">Description</label>

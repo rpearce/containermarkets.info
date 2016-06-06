@@ -2,7 +2,6 @@
 
 const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
-const { dbName } = require('../../../db/config')
 const { createPlace, destroyPlaces } = require('../../../db/test_helpers')
 
 describe('Place Edit', () => {
@@ -11,9 +10,9 @@ describe('Place Edit', () => {
   describe('When Found', () => {
     describe('GET /:slug/edit', () => {
       it('returns 200', (done) => {
-        createPlace().then((place) => {
+        createPlace().then(slug => {
           request
-            .get(`/${place.slug}/edit`)
+            .get(`/${slug}/edit`)
             .expect('Content-Type', /text/)
             .expect(200)
             .end(done)

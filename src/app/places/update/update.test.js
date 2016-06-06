@@ -2,7 +2,6 @@
 
 const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
-const { dbName } = require('../../../db/config')
 const { createPlace, destroyPlaces } = require('../../../db/test_helpers')
 
 describe('Place UPDATE - POST /', () => {
@@ -10,22 +9,22 @@ describe('Place UPDATE - POST /', () => {
 
   describe('with valid attributes', () => {
     it('updates place and redirects to place', (done) => {
-      createPlace().then((place) => {
+      createPlace().then(slug => {
         request
-          .post(`/${place.slug}`)
+          .post(`/${slug}`)
           .send({
             place: {
-              name: place.name,
-              slug: place.slug,
-              address: place.address,
-              lat: place.lat,
-              long: place.long,
-              description: place.description,
+              name: 'new name',
+              slug: 'new-slug',
+              address: '123 main st',
+              latitude: '1.223223',
+              longitude: '-1.2323',
+              description: 'new description',
               content: '### SOMETHING NEW'
             }
           })
           .expect(302)
-          .expect('Location', `/${place.slug}`)
+          .expect('Location', `/new-slug`)
           .end(done)
       }).catch(done)
     })
@@ -33,11 +32,13 @@ describe('Place UPDATE - POST /', () => {
 
   describe('with invalid attributes', () => {
     it('does not update and renders edit', (done) => {
-      request
-        .post('/')
-        .send({ place: {} })
-        .expect(422)
-        .end(done)
+      createPlace().then(slug => {
+        request
+          .post(`/${slug}`)
+          .send({ place: {} })
+          .expect(422)
+          .end(done)
+      }).catch(done)
     })
   })
 })
