@@ -36,7 +36,7 @@ module.exports = ({
     </div>
     <div class="form__section">
       <label for="place_content">Content</label>
-      <textarea name="place[content]" id="place_content" placeholder="Enter markdown content here..." rows="1" data-js="textarea" data-markdown required>${place.content}</textarea>
+      <textarea name="place[content]" id="place_content" placeholder="Enter markdown content here..." rows="1" class="mdEditor" data-js="textarea" data-markdown required>${place.content}</textarea>
     </div>
     <div class="form__section">
       <button type="submit">Submit</button>
