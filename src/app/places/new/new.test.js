@@ -8,11 +8,11 @@ describe('Place New', () => {
   beforeEach((done) => destroyPlaces().then(done))
 
   describe('When admin', () => {
-    describe('GET /new', () => {
+    describe('GET /places/new', () => {
       it('returns 200', (done) => {
         createPlace().then((place) => {
           request
-            .get('/new')
+            .get('/places/new')
             .expect('Content-Type', /text/)
             .expect(200)
             .end(done)

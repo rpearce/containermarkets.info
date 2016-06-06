@@ -14,40 +14,26 @@ module.exports = (db) => {
     // Drops places table
     drop: () => db.none(sql.drop),
 
-    init: () =>
-      db.result(sql.init)
-        .then(result => console.log(`Inserted ${result.rowCount} places`))
-        .catch(err => console.log('ERROR: ,', err.message || err)),
+    init: () => db.result(sql.init).then(result => console.log(`Inserted ${result.rowCount} places`)),
 
     // Removes all records from places table
     empty: () => db.none(sql.empty),
 
     // Add new record and return slug
-    add: values =>
-      db.one(sql.add, values)
-        .then(data => data.slug)
-        .catch(err => console.log('ERROR: ,', err.message || err)),
+    add: values => db.one(sql.add, values).then(data => data.slug),
 
     // Find all records
-    all: () =>
-      db.any('SELECT * FROM places ORDER BY name')
-        .catch(err => console.log('ERROR: ,', err.message || err)),
+    all: () => db.any('SELECT * FROM places ORDER BY name'),
 
-    // Finds by slug
-    find: slug =>
-      db.oneOrNone(sql.find, slug)
-        .catch(err => console.log('ERROR: ,', err.message || err)),
+    // Finds by slug, returning all columns
+    find: slug => db.oneOrNone(sql.find, slug),
 
-    // Deletes a place by slug
-    remove: slug =>
-      db.result(sql.remove, slug)
-        .then(result => result.rowCount)
-        .catch(err => console.log('ERROR: ,', err.message || err)),
+    // Deletes a place by slug, returning rowCount
+    remove: slug => db.result(sql.remove, slug).then(result => result.rowCount),
 
-    // Updates a place
-    update: (id, values) =>
-      db.one(sql.update, values)
-        .then(data => data.slug)
-        .catch(err => console.log('ERROR: ,', err.message || err))
+    // Updates a place, returning slug
+    update: (oldSlug, values) => {
+      return db.one(sql.update, Object.assign(values, { oldSlug }))
+    }
   }
 }

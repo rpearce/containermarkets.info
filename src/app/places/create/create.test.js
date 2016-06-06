@@ -3,11 +3,11 @@
 const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
 
-describe('Place Create - POST /', () => {
+describe('Place Create - POST /places', () => {
   describe('with valid attributes', () => {
     it('creates place and redirects to place', (done) => {
       request
-        .post('/')
+        .post('/places')
         .send({
           place: {
             name: 'BoxPark XYZ',
@@ -28,7 +28,7 @@ describe('Place Create - POST /', () => {
   describe('with invalid attributes', () => {
     it('does not create and renders new', (done) => {
       request
-        .post('/')
+        .post('/places')
         .send({ place: {} })
         .expect(422)
         .end(done)

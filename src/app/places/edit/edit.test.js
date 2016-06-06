@@ -10,9 +10,9 @@ describe('Place Edit', () => {
   describe('When Found', () => {
     describe('GET /:slug/edit', () => {
       it('returns 200', (done) => {
-        createPlace().then((place) => {
+        createPlace().then(slug => {
           request
-            .get(`/${place.slug}/edit`)
+            .get(`/${slug}/edit`)
             .expect('Content-Type', /text/)
             .expect(200)
             .end(done)

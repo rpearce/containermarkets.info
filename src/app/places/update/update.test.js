@@ -9,22 +9,22 @@ describe('Place UPDATE - POST /', () => {
 
   describe('with valid attributes', () => {
     it('updates place and redirects to place', (done) => {
-      createPlace().then((place) => {
+      createPlace().then(slug => {
         request
-          .post(`/${place.slug}`)
+          .post(`/${slug}`)
           .send({
             place: {
-              name: place.name,
-              slug: place.slug,
-              address: place.address,
-              latitude: place.latitude,
-              longitude: place.longitude,
-              description: place.description,
+              name: 'new name',
+              slug: 'new-slug',
+              address: '123 main st',
+              latitude: '1.223223',
+              longitude: '-1.2323',
+              description: 'new description',
               content: '### SOMETHING NEW'
             }
           })
           .expect(302)
-          .expect('Location', `/${place.slug}`)
+          .expect('Location', `/new-slug`)
           .end(done)
       }).catch(done)
     })
@@ -32,11 +32,13 @@ describe('Place UPDATE - POST /', () => {
 
   describe('with invalid attributes', () => {
     it('does not update and renders edit', (done) => {
-      request
-        .post('/')
-        .send({ place: {} })
-        .expect(422)
-        .end(done)
+      createPlace().then(slug => {
+        request
+          .post(`/${slug}`)
+          .send({ place: {} })
+          .expect(422)
+          .end(done)
+      }).catch(done)
     })
   })
 })

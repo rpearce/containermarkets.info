@@ -5,7 +5,7 @@ const form = require('../_shared/_form')
 
 module.exports = ({ csrfToken, errors, place }) => {
   const title = 'New Place'
-  const formData = { action: '/', csrfToken, errors, place }
+  const formData = { action: '/places', csrfToken, errors, place }
   const body = buildBody({ title, formData })
   return layout({ title, body })
 }
