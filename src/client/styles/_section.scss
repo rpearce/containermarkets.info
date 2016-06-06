@@ -1,27 +1,29 @@
 .section {
   padding: 4em 2em;
-  h1 {
-    font-weight: bold;
-  }
-  h2 {
-    font-size: 1rem;
-    font-weight: 200;
-    color: rgba(255, 255, 255, 0.8);
-  }
+  h2,
   h3 {
     margin: 1em 0;
   }
+  p {
+    margin: 0;
+  }
+  p + p {
+    margin-top: 1em;
+  }
   @media only screen and (min-width: $break--small) {
-    h1 {
-      font-size: 4rem;
-    }
-    h1,
     h2 {
-      margin: 0;
+      font-size: 2.5rem;
+      margin: 0.5em 0 0;
+      &:first-of-type {
+        margin: 0 0 0.15em;
+      }
     }
     h3 {
-      font-size: 2rem;
-      margin: 0;
+      font-size: 1.75rem;
+      margin: 0.5em 0 0;
     }
   }
+}
+.section .section {
+  padding: 1em 0;
 }

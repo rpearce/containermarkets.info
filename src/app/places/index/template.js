@@ -12,25 +12,25 @@ const buildBody = (places) =>
   `<header class="hero section">
     <div class="l--constrained">
       <h1>Container Markets Information</h1>
-      <h2>Your guide to container markets around the world</h2>
+      <p>Your guide to container markets around the world</p>
     </div>
   </header>
   <section class="section">
     <div class="l--constrained">
-      <h3>What are container markets?</h3>
+      <h2>What are container markets?</h2>
       <p>Container markets, also known as container malls, are indoor/outdoor markets made predominantly from repurposed shipping containers. They typically house food and drink vendors, artisanal craftspeople, independent retailers and even name brands.</p>
       <p>There are a number of container markets found all over the globe, and we will be listing, mapping and discovering them here.</p>
     </div>
   </section>
   <section class="places section">
     <div class="l--constrained">
-      <h3>Container Markets</h3>
+      <h2>Container Markets</h2>
       ${buildPlaces(places)}
     </div>
   </section>
   <section class="signup section">
     <div class="l--constrained">
-      <h3>Get info on new container markets</h3>
+      <h2>Get info on new container markets</h2>
       <p>Note: we will <em>never</em> give out your email nor spam you. We just want people to enjoy container markets as much as we do.</p>
       <!-- Begin MailChimp Signup Form -->
       <form action="//containermarkets.us13.list-manage.com/subscribe/post?u=2df44e8960266388bff165fa6&amp;id=cb3f0eab65" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>

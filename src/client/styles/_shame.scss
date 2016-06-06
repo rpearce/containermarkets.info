@@ -1,0 +1,13 @@
+.is-hidden {
+  display: none;
+}
+.mdToggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: #90C695;
+  border: none;
+  border-radius: 3px;
+  color: $white;
+}
