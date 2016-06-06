@@ -10,7 +10,7 @@ describe('Place New', () => {
   describe('When admin', () => {
     describe('GET /places/new', () => {
       it('returns 200', (done) => {
-        createPlace().then((place) => {
+        createPlace().then(place => {
           request
             .get('/places/new')
             .expect('Content-Type', /text/)

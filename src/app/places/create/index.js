@@ -7,12 +7,10 @@ const template = require('../new/template')
 module.exports = (ctx, _) => new Promise((resolve, reject) => {
   const params = cleanProps(ctx.request.body.place)
   if (isValid(params)) {
-    db.places.add(params)
-      .then(slug => {
-        ctx.redirect(`/${slug}`, 302)
-        resolve()
-      })
-      .catch(reject)
+    db.places.add(params).then(slug => {
+      ctx.redirect(`/${slug}`, 302)
+      resolve()
+    }).catch(reject)
   } else {
     ctx.status = 422
     ctx.body = template({

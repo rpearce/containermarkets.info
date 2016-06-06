@@ -19,6 +19,7 @@ module.exports = {
   // External queries for places
   places: {
     add: sql('places/add.sql'),
+    all: sql('places/all.sql'),
     create: sql('places/create.sql'),
     drop: sql('places/drop.sql'),
     empty: sql('places/empty.sql'),

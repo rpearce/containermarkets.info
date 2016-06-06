@@ -14,15 +14,11 @@ const createPlace = () => new Promise((resolve, reject) => {
     updated_at: '2016-05-25T13:25:24.688Z'
   }
 
-  db.places.add(place)
-    .then(resolve)
-    .catch(reject)
+  db.places.add(place).then(resolve).catch(reject)
 })
 
 const destroyPlaces = () => new Promise((resolve, reject) => {
-  db.places.empty()
-    .then(resolve)
-    .catch(reject)
+  db.places.empty().then(resolve).catch(reject)
 })
 
 module.exports = { createPlace, destroyPlaces }

@@ -23,7 +23,7 @@ module.exports = (db) => {
     add: values => db.one(sql.add, values).then(data => data.slug),
 
     // Find all records
-    all: () => db.any('SELECT * FROM places ORDER BY name'),
+    all: () => db.any(sql.all),
 
     // Finds by slug, returning all columns
     find: slug => db.oneOrNone(sql.find, slug),
@@ -32,8 +32,6 @@ module.exports = (db) => {
     remove: slug => db.result(sql.remove, slug).then(result => result.rowCount),
 
     // Updates a place, returning slug
-    update: (oldSlug, values) => {
-      return db.one(sql.update, Object.assign(values, { oldSlug }))
-    }
+    update: (oldSlug, values) => db.one(sql.update, Object.assign(values, { oldSlug }))
   }
 }
