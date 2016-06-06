@@ -33,5 +33,5 @@ const toggleView = (e) => {
 
 const handleChange = (e) => {
   const preview = e.target.parentNode.querySelector('[data-markdownPreview]');
-  preview.innerHTML = e.target.value;
+  preview.innerHTML = marked(e.target.value);
 }
