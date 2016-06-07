@@ -1,5 +1,6 @@
+const mailgun = require('mailgun-js')
 const { db } = require('../../db')
-const mailer = require('../../server/mailer')
+const { appDomain, protocol } = require('../../server/config')
 
 const reauthorize = ({ id, email }) => new Promise((resolve, reject) => {
   db.auths.remove(id)
@@ -10,16 +11,20 @@ const reauthorize = ({ id, email }) => new Promise((resolve, reject) => {
 })
 
 const sendAuthEmail = ({ token, email }) => new Promise((resolve, reject) => {
-  const text = `Please use the following link to sign in.\n\nhttp://containermarkets.info/login?t=${token}`
-  const html = `Please use the following link to sign in.<br><br><a href="http://containermarkets.info/login?t=${token}">http://containermarkets.info/login?t=${token}</a>`
+  const mailer = mailgun({
+    apiKey: process.env.MAILGUN_API_KEY,
+    domain: process.env.MAILGUN_DOMAIN
+  })
+
+  const link = `${protocol}://${appDomain}/login?t=${token}`
 
   var data = {
     from: 'Container Markets Info - No Reply <noreply@containermarkets.info>',
     to: email,
     subject: 'Sign in to your Container Markets Information account',
-    text,
-    html
-  };
+    text: `Please use the following link to sign in.\n\n${link}`,
+    html: `Please use the following link to sign in.<br><br><a href="${link}">${link}</a>`
+  }
 
   mailer.messages().send(data, (err, body) => {
     if (err) return reject(err)

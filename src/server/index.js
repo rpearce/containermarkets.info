@@ -1,10 +1,12 @@
 'use strict'
 
+const dotenv = require('dotenv');
 const Koa = require('koa')
 const compress = require('koa-compress')
 const convert = require('koa-convert')
 const bodyParser = require('koa-body')
 const favicon = require('koa-favicon')
+const jwt = require('koa-jwt')
 const logger = require('koa-logger')
 const lusca = require('koa-lusca')
 const route = require('koa-route')
@@ -16,8 +18,13 @@ const homeRoutes = require('../app/home/routes')
 const loginRoutes = require('../app/login/routes')
 const placeRoutes = require('../app/places/routes')
 
+// Load environment variables from .env
+dotenv.config()
+
+// Create Koa app
 const app = module.exports = new Koa()
 
+// Set app keys
 app.keys = [config.sessionKey]
 
 // Session MGMT.
@@ -60,16 +67,35 @@ if (process.env.NODE_ENV !== 'test') {
   }))
 }
 
-// Routes – *order matters here*
+// JSON Web Token handling so
+// because don't want to expose koa-jwt errors
+app.use((ctx, next) => {
+  return next().catch((err) => {
+    if (401 == err.status) {
+      ctx.status = 401
+      ctx.body = 'Protected resource, use Authorization header to get access\n'
+    } else {
+      throw err
+    }
+  })
+})
+
+// Public Routes
 app.use(route.get('/', placeRoutes.indexRoute))
 app.use(route.get('/about', homeRoutes.aboutRoute))
 app.use(route.get('/login', loginRoutes.newRoute))
 app.use(route.post('/login', loginRoutes.createRoute))
 app.use(route.get('/login/check-email', loginRoutes.checkEmailRoute))
+app.use(route.get('/:slug', placeRoutes.showRoute))
+
+// Middleware below this line is only reached if JWT token is valid
+app.use(jwt({ secret: config.jwtSecret }));
+
+// Private Routes
 app.use(route.get('/places/new', placeRoutes.newRoute))
 app.use(route.post('/places', placeRoutes.createRoute))
-app.use(route.get('/:slug', placeRoutes.showRoute))
 app.use(route.get('/:slug/edit', placeRoutes.editRoute))
 app.use(route.post('/:slug', placeRoutes.updateRoute))
 
+// Start the web server
 app.listen(config.port, () => console.log(`listening on port ${config.port}`))
