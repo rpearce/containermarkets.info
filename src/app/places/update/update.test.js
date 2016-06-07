@@ -2,14 +2,14 @@
 
 const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
-const { createPlace, destroyPlaces } = require('../../../db/test_helpers')
+const { places } = require('../../../db/test_helpers')
 
 describe('Place UPDATE - POST /', () => {
-  beforeEach((done) => destroyPlaces().then(done))
+  beforeEach((done) => places.destroy().then(done))
 
   describe('with valid attributes', () => {
     it('updates place and redirects to place', (done) => {
-      createPlace().then(slug => {
+      places.create().then(slug => {
         request
           .post(`/${slug}`)
           .send({
@@ -32,7 +32,7 @@ describe('Place UPDATE - POST /', () => {
 
   describe('with invalid attributes', () => {
     it('does not update and renders edit', (done) => {
-      createPlace().then(slug => {
+      places.create().then(slug => {
         request
           .post(`/${slug}`)
           .send({ place: {} })

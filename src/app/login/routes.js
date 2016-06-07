@@ -1,7 +1,10 @@
 const newRoute = require('./new')
-//const createRoute = require('./create')
+const checkEmailRoute = require('./check-email')
+const createRoute = require('./create')
 
   //createRoute,
 module.exports = {
-  newRoute
+  newRoute,
+  checkEmailRoute,
+  createRoute
 }

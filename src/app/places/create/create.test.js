@@ -26,7 +26,7 @@ describe('Place Create - POST /places', () => {
   })
 
   describe('with invalid attributes', () => {
-    it('does not create and renders new', (done) => {
+    it('does not create and gives 422', (done) => {
       request
         .post('/places')
         .send({ place: {} })

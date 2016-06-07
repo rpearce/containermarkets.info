@@ -64,6 +64,8 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(route.get('/', placeRoutes.indexRoute))
 app.use(route.get('/about', homeRoutes.aboutRoute))
 app.use(route.get('/login', loginRoutes.newRoute))
+app.use(route.post('/login', loginRoutes.createRoute))
+app.use(route.get('/login/check-email', loginRoutes.checkEmailRoute))
 app.use(route.get('/places/new', placeRoutes.newRoute))
 app.use(route.post('/places', placeRoutes.createRoute))
 app.use(route.get('/:slug', placeRoutes.showRoute))

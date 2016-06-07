@@ -1,7 +1,7 @@
 const r = require('./index')
 const { db } = require('./index')
 
-const createPlace = () => new Promise((resolve, reject) => {
+const createPlace = () => {
   const place = {
     slug: 'dekalb-market-brooklyn',
     name: 'Dekalb Market',
@@ -14,11 +14,20 @@ const createPlace = () => new Promise((resolve, reject) => {
     updated_at: '2016-05-25T13:25:24.688Z'
   }
 
-  db.places.add(place).then(resolve).catch(reject)
-})
+  return db.places.add(place)
+}
+const destroyPlaces = () => db.places.empty()
 
-const destroyPlaces = () => new Promise((resolve, reject) => {
-  db.places.empty().then(resolve).catch(reject)
-})
+const createAdmin = (email) => db.none('INSERT INTO admins (email) VALUES ($1);', email)
+const destroyAdmins = () => db.none('TRUNCATE TABLE admins CASCADE;')
 
-module.exports = { createPlace, destroyPlaces }
+module.exports = {
+  admins: {
+    create: createAdmin,
+    destroy: destroyAdmins
+  },
+  places: {
+    create: createPlace,
+    destroy: destroyPlaces
+  }
+}

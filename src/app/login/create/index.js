@@ -4,28 +4,22 @@ const { db } = require('../../../db')
 const template = require('../new/template')
 
 module.exports = (ctx, _) => new Promise((resolve, reject) => {
-  const email = cleanProps(ctx.request.body.admin.email)
+  const email = ctx.request.body.admin.email.trim()
 
-  // find email in admins table
-  // if admin is found
-  //   send admin email for login
-  //   redirect to page saying to check your email plx
-  // else
-  //   invalid
+  db.admins.find(email).then(admin => {
+    if (!admin) {
+      ctx.status = 422
+      ctx.body = template({
+        csrfToken: ctx.state._csrf,
+        errors: ['Email not found']
+      })
+      return resolve()
+    }
 
-
-
-  if (isValid(params)) {
-    db.places.add(params).then(slug => {
-      ctx.redirect(`/${slug}`, 302)
-      resolve()
-    }).catch(reject)
-  } else {
-    ctx.status = 422
-    ctx.body = template({
-      csrfToken: ctx.state._csrf,
-      errors: ['Email not found']
-    })
+    // send admin email for login
+    //
+    // redirect to page saying to check your email plx
+    ctx.redirect('/login/check-email', 302)
     resolve()
-  }
+  }).catch(reject)
 })

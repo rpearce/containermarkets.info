@@ -2,15 +2,15 @@
 
 const app = require('../../../server/index')
 const request = require('supertest').agent(app.listen())
-const { createPlace, destroyPlaces } = require('../../../db/test_helpers')
+const { places } = require('../../../db/test_helpers')
 
 describe('Place Edit', () => {
-  beforeEach((done) => destroyPlaces().then(done))
+  beforeEach((done) => places.destroy().then(done))
 
   describe('When Found', () => {
     describe('GET /:slug/edit', () => {
       it('returns 200', (done) => {
-        createPlace().then(slug => {
+        places.create().then(slug => {
           request
             .get(`/${slug}/edit`)
             .expect('Content-Type', /text/)
