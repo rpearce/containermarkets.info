@@ -2,6 +2,7 @@
 
 const { db } = require('../../../db')
 const template = require('../new/template')
+const { reauthorize } = require('../../admin/admin')
 
 module.exports = (ctx, _) => new Promise((resolve, reject) => {
   const email = ctx.request.body.admin.email.trim()
@@ -16,10 +17,10 @@ module.exports = (ctx, _) => new Promise((resolve, reject) => {
       return resolve()
     }
 
-    // send admin email for login
-    //
-    // redirect to page saying to check your email plx
-    ctx.redirect('/login/check-email', 302)
-    resolve()
+    reauthorize(admin)
+      .then(() => {
+        ctx.redirect('/login/check-email', 302)
+        resolve()
+      }).catch(reject)
   }).catch(reject)
 })

@@ -8,15 +8,16 @@ const { places: sql } = require('../sql')
 
 module.exports = (db) => {
   return {
-    // Creates places table
+    // Create table
     create: () => db.none(sql.create),
 
-    // Drops places table
+    // Drop table
     drop: () => db.none(sql.drop),
 
+    // Insert default records
     init: () => db.result(sql.init),
 
-    // Removes all records from places table
+    // Remove all records
     empty: () => db.none(sql.empty),
 
     // Add new record and return slug
@@ -25,13 +26,13 @@ module.exports = (db) => {
     // Find all records
     all: () => db.any(sql.all),
 
-    // Finds by slug, returning all columns
+    // Find by slug
     find: slug => db.oneOrNone(sql.find, slug),
 
-    // Deletes a place by slug, returning rowCount
-    remove: slug => db.result(sql.remove, slug).then(result => result.rowCount),
+    // Delete by slug
+    remove: slug => db.result(sql.remove, slug),
 
-    // Updates a place, returning slug
+    // Update by old slug
     update: (oldSlug, values) => db.one(sql.update, Object.assign(values, { oldSlug }))
   }
 }

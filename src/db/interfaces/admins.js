@@ -8,16 +8,16 @@ const { admins: sql } = require('../sql')
 
 module.exports = (db) => {
   return {
-    // Creates admins table
+    // Create table
     create: () => db.none(sql.create),
 
-    // Drops admins table
+    // Drop table
     drop: () => db.none(sql.drop),
 
-    // Inserts default admins
+    // Insert default records
     init: () => db.result(sql.init),
 
-    // Finds by email, returning all columns
+    // Finds by email
     find: email => db.oneOrNone(sql.find, email)
   }
 }

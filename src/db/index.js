@@ -2,12 +2,14 @@
 
 const pgpLib = require('pg-promise')
 const admins = require('./interfaces/admins')
+const auths = require('./interfaces/auths')
 const places = require('./interfaces/places')
 
 // pg-promise initialization options
 const options = {
   extend: db => {
     db.admins = admins(db)
+    db.auths = auths(db)
     db.places = places(db)
   }
 }

@@ -25,6 +25,14 @@ module.exports = {
     init: sql('admins/init.sql')
   },
 
+  auths: {
+    add: sql('auths/add.sql'),
+    create: sql('auths/create.sql'),
+    drop: sql('auths/drop.sql'),
+    find: sql('auths/find.sql'),
+    remove: sql('auths/remove.sql')
+  },
+
   places: {
     add: sql('places/add.sql'),
     all: sql('places/all.sql'),
