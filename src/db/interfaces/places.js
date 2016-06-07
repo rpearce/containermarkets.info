@@ -14,7 +14,7 @@ module.exports = (db) => {
     // Drops places table
     drop: () => db.none(sql.drop),
 
-    init: () => db.result(sql.init).then(result => console.log(`Inserted ${result.rowCount} places`)),
+    init: () => db.result(sql.init),
 
     // Removes all records from places table
     empty: () => db.none(sql.empty),

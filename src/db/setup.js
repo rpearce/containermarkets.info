@@ -2,16 +2,21 @@
 
 const { db } = require('./index')
 
-const p = db.places
-
-const init = (p) => new Promise((resolve, reject) => {
-  if (process.env.NODE_ENV === 'test') return resolve()
-  p.init().then(resolve).catch(reject)
+const setup = (table) => new Promise((resolve, reject) => {
+  table
+    .drop()
+    .then(table.create)
+    .then(() => init(table))
+    .then(resolve)
+    .catch(reject)
 })
 
-p
-  .drop()
-  .then(p.create)
-  .then(() => init(p))
+const init = (table) => new Promise((resolve, reject) => {
+  if (process.env.NODE_ENV === 'test') return resolve()
+  table.init().then(resolve).catch(reject)
+})
+
+setup(db.admins)
+  .then(() => setup(db.places))
   .then(process.exit)
-  .catch(error => console.log(error))
+  .catch(error => console.error(error))

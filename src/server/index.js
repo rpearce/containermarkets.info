@@ -13,6 +13,7 @@ const session = require('koa-session')
 
 const config = require('./config')
 const homeRoutes = require('../app/home/routes')
+const loginRoutes = require('../app/login/routes')
 const placeRoutes = require('../app/places/routes')
 
 const app = module.exports = new Koa()
@@ -40,7 +41,7 @@ app.use(serve('src/public'))
 // Parse Requests
 app.use(bodyParser())
 
-// CSRF
+// CSRF and more
 if (process.env.NODE_ENV !== 'test') {
   app.use(lusca({
     csrf: {
@@ -59,14 +60,10 @@ if (process.env.NODE_ENV !== 'test') {
   }))
 }
 
-// Protect routes behind auth rules
-// and give 404 if not auth'd.
-// Should have this somewhere else.
-// app.use()
-
-// Routes
+// Routes – *order matters here*
 app.use(route.get('/', placeRoutes.indexRoute))
 app.use(route.get('/about', homeRoutes.aboutRoute))
+app.use(route.get('/login', loginRoutes.newRoute))
 app.use(route.get('/places/new', placeRoutes.newRoute))
 app.use(route.post('/places', placeRoutes.createRoute))
 app.use(route.get('/:slug', placeRoutes.showRoute))

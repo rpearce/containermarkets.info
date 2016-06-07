@@ -8,7 +8,6 @@ module.exports = (ctx, slug) => new Promise((resolve, reject) => {
   const params = cleanProps(ctx.request.body.place)
   if (isValid(params)) {
     db.places.update(slug, params).then(data => {
-      console.log('Data: ', data)
       if (slug) ctx.redirect(`/${data.slug}`, 302)
       resolve()
     }).catch(reject)

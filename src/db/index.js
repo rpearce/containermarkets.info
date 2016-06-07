@@ -1,11 +1,13 @@
 'use strict'
 
 const pgpLib = require('pg-promise')
+const admins = require('./interfaces/admins')
 const places = require('./interfaces/places')
 
 // pg-promise initialization options
 const options = {
   extend: db => {
+    db.admins = admins(db)
     db.places = places(db)
   }
 }

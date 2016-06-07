@@ -1,5 +1,5 @@
 ------------------------------------------------------------
--- Adds Default Place Records
+-- Adds default place records
 ------------------------------------------------------------
 
 INSERT INTO places (name, slug, description, content, address, latitude, longitude) VALUES

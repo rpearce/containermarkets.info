@@ -16,7 +16,15 @@ const sql = (file) => {
 }
 
 module.exports = {
-  // External queries for places
+  // External queries
+
+  admins: {
+    create: sql('admins/create.sql'),
+    drop: sql('admins/drop.sql'),
+    find: sql('admins/find.sql'),
+    init: sql('admins/init.sql')
+  },
+
   places: {
     add: sql('places/add.sql'),
     all: sql('places/all.sql'),
