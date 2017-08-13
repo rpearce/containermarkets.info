@@ -6,10 +6,7 @@ const sql = (file) => {
   const path = `./src/db/sql/${file}`
 
   const options = {
-    minify: true,
-    params: {
-      schema: 'public'
-    }
+    minify: true
   }
 
   return new QueryFile(path, options)
